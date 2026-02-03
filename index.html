@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>RuuRoo Chronicles</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: "Times New Roman", serif;
+            background: linear-gradient(to bottom, #f7b7d2, #87ceeb);
+            text-align: center;
+        }
+
+        .page {
+            display: none;
+            min-height: 100vh;
+            padding: 50px;
+            box-sizing: border-box;
+            opacity: 0;
+            transition: opacity 0.8s;
+        }
+
+        .active {
+            display: block;
+            opacity: 1;
+        }
+
+        h1 {
+            font-size: 70px;
+            color: #b30059;
+            margin-top: 150px;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 20px;
+            border: none;
+            border-radius: 30px;
+            background-color: #ff69b4;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #ff85c1;
+            transform: scale(1.05);
+        }
+
+        input {
+            padding: 10px;
+            font-size: 18px;
+            width: 190px;
+        }
+
+        .bg-page {
+            background-image: url("./images/1.jpg.jpeg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bg-page h1, .bg-page p {
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+        }
+
+        /* Floating heart animation for Page 3 */
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: rgba(255,105,180,0.7);
+            transform: rotate(45deg);
+            animation: floatHeart linear infinite;
+            border-radius: 0 0 50% 50%;
+        }
+
+        @keyframes floatHeart {
+            0% {transform: translateY(100vh) rotate(45deg); opacity:1;}
+            100% {transform: translateY(-50px) rotate(45deg); opacity:0;}
+        }
+
+        .memory {
+            display: flex;
+            overflow-x: auto;
+            padding: 20px 0;
+        }
+
+        .memory img {
+            flex: 0 0 auto;
+            width: 190px;
+            border-radius: 20px;
+            margin: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .infinity {
+            font-size: 80px;
+            color: #b30059;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- PAGE 1 -->
+<div class="page active" id="page1">
+    <h1>RUUROO CHRONICLES</h1>
+    <button onclick="nextPage(2)">Start 2829 Journey</button>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page" id="page2">
+    <h1>To See The Journey</h1>
+    <p>Please enter your name</p>
+    <input type="text" id="nameInput" placeholder="Your Name">
+    <br><br>
+    <button onclick="nextPage(3)">Enter</button>
+</div>
+
+<!-- PAGE 3 -->
+<div class="page bg-page" id="page3">
+    <h1>Our Story Begins 💖</h1>
+    <p id="storyText">This is where our journey of love truly starts...</p>
+    <button onclick="nextPage(4)">Next</button>
+</div>
+
+<!-- PAGE 4 -->
+<div class="page" id="page4">
+    <h1>Our Memories 💕</h1>
+
+    <div class="memory">
+        <img src="images/2.jpg.jpeg">
+        <img src="images/3.jpg.jpeg">
+        <img src="images/4.jpg.jpeg">
+        <img src="images/5.jpg.jpeg">
+        <img src="images/6.jpg.jpeg">
+        <img src="images/7.jpg.jpeg">
+        <img src="images/8.jpg.jpeg">
+        <img src="images/9.jpg.jpeg">
+        <img src="images/10.jpg.jpeg">
+        <img src="images/11.jpg.jpeg">
+        <img src="images/12.jpg.jpeg">
+        <img src="images/13.jpg.jpeg">
+        <img src="images/14.jpg.jpeg">
+        <img src="images/15.jpg.jpeg">
+        <img src="images/16.jpg.jpeg">
+        <img src="images/17.jpg.jpeg">
+        <img src="images/18.jpg.jpeg">
+        <img src="images/20.jpg.jpeg">
+        <img src="images/21.jpg.jpeg">
+        <img src="images/23.jpg.jpeg">
+        <img src="images/24.jpg.jpeg">
+        <img src="images/25.jpg.jpeg">
+        <img src="images/26.jpg.jpeg">
+        <img src="images/27.jpg.jpeg">
+        <img src="images/28.jpg.jpeg">
+        <img src="images/29.jpg.jpeg">
+    </div>
+
+    <p id="loveMessage">
+        <!-- Message will be inserted dynamically -->
+    </p>
+
+    <button onclick="nextPage(5)">Next</button>
+</div>
+
+<!-- PAGE 5 -->
+<div class="page" id="page5">
+    <div class="infinity">♾️</div>
+    <h1>Chapter To Be Continued...</h1>
+    <img src="images/27.jpg.jpeg" width="300" style="border-radius:20px;">
+    <br><br>
+    <button onclick="nextPage(6)">Next</button>
+</div>
+
+<!-- PAGE 6 -->
+<div class="page" id="page6">
+    <h1>RUTU ❤️ ROHAN</h1>
+    <h1>FOREVER</h1>
+</div>
+
+<script>
+    // Animate floating hearts on Page 3
+    function createHeart() {
+        const heart = document.createElement('div');
+        heart.classList.add('heart');
+        heart.style.left = Math.random() * window.innerWidth + 'px';
+        heart.style.width = 20 + Math.random() * 20 + 'px';
+        heart.style.height = heart.style.width;
+        heart.style.animationDuration = 4 + Math.random() * 4 + 's';
+        document.getElementById('page3').appendChild(heart);
+        setTimeout(() => heart.remove(), 8000);
+    }
+
+    setInterval(() => {
+        if(document.getElementById('page3').classList.contains('active')) {
+            createHeart();
+        }
+    }, 300);
+
+    function nextPage(pageNumber) {
+        const name = document.getElementById('nameInput')?.value.trim() || "Rohan";
+
+        // Update Page 4 love message dynamically
+        if(pageNumber === 4){
+            document.getElementById('loveMessage').innerHTML = `
+                ${name},<br><br>
+                You came into my life so unexpectedly—almost by accident—and yet, that accident turned into the most beautiful journey I’ve ever known.<br><br>
+                I’m sorry for the mistakes I’ve made, but even after every fight, we always choose each other. That is the best part of us.<br><br>
+                I will always keep loving you and want to grow old with you, ${name}. Today, tomorrow, and forever. 💖
+            `;
+        }
+
+        // Page 3 story text animation (optional)
+        if(pageNumber === 3){
+            const storyText = document.getElementById('storyText');
+            storyText.innerHTML = '';
+            const message = "This is where our journey of love truly starts...";
+            let i = 0;
+            const interval = setInterval(() => {
+                storyText.innerHTML += message[i];
+                i++;
+                if(i >= message.length) clearInterval(interval);
+            }, 50);
+        }
+
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        document.getElementById('page' + pageNumber).classList.add('active');
+    }
+</script>
+
+</body>
+</html>
